@@ -1,4 +1,5 @@
 import React from 'react';
+import usePublicDataStore from '../store/publicDataStore';
 import './PublicDataList.css';
 
 /**
@@ -85,15 +86,17 @@ const EmptyResult = () => (
 );
 
 /**
- * 공공데이터 목록 컴포넌트
+ * 공공데이터 목록 컴포넌트 (Zustand 사용)
  */
-const PublicDataList = ({ data, loading, error, onRetry }) => {
+const PublicDataList = () => {
+    // Zustand 스토어에서 직접 상태와 액션 가져오기
+    const { data, loading, error, retry } = usePublicDataStore();
     if (loading) {
         return <LoadingSpinner />;
     }
 
     if (error) {
-        return <ErrorMessage message={error} onRetry={onRetry} />;
+        return <ErrorMessage message={error} onRetry={retry} />;
     }
 
     // OData Cloud API 구조 또는 기존 구조 모두 지원

@@ -1,49 +1,19 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import PublicDataList from './PublicDataList';
-import { getPublicFacilities } from '../services/publicDataService';
+import usePublicDataStore from '../store/publicDataStore';
 import './PublicDataApp.css';
 
 /**
  * 공공데이터 애플리케이션 메인 컴포넌트
  */
 const PublicDataApp = () => {
-    const [data, setData] = useState(null);
-    const [loading, setLoading] = useState(false);
-    const [error, setError] = useState(null);
-
-    // API 키 상태 확인
-    const hasApiKey = import.meta.env.VITE_PUBLIC_DATA_API_KEY &&
-        import.meta.env.VITE_PUBLIC_DATA_API_KEY.trim() !== '' &&
-        import.meta.env.VITE_PUBLIC_DATA_API_KEY !== 'YOUR_API_KEY_HERE';
+    // Zustand 스토어에서 필요한 상태와 액션만 가져오기
+    const { hasApiKey, loadData } = usePublicDataStore();
 
     // 컴포넌트 마운트 시 초기 데이터 로딩
     useEffect(() => {
         loadData();
-    }, []);
-
-    /**
-     * 데이터 로딩 함수
-     */
-    const loadData = async () => {
-        setLoading(true);
-        setError(null);
-
-        try {
-            const result = await getPublicFacilities();
-            setData(result);
-        } catch (err) {
-            setError(err.message || '데이터를 불러오는 중 오류가 발생했습니다.');
-        } finally {
-            setLoading(false);
-        }
-    };
-
-    /**
-     * 재시도 핸들러
-     */
-    const handleRetry = () => {
-        loadData();
-    };
+    }, [loadData]);
 
     return (
         <div className="public-data-app">
@@ -53,12 +23,7 @@ const PublicDataApp = () => {
             </header>
 
             <main className="app-main">
-                <PublicDataList
-                    data={data}
-                    loading={loading}
-                    error={error}
-                    onRetry={handleRetry}
-                />
+                <PublicDataList />
             </main>
 
             <footer className="app-footer">
