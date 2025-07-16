@@ -1,10 +1,19 @@
-// 공공데이터 API 서비스 (OData Cloud API)
-// Base URL: https://api.odcloud.kr/api
+// 공공데이터 API 서비스 (PHP 프록시 사용)
+// 프록시 서버: /api/parking-data.php
+// 원본 API: https://api.odcloud.kr/api
 // 데이터셋: 대구광역시 북구 공유개방 주차장 현황
 // Swagger 문서: https://infuser.odcloud.kr/oas/docs?namespace=15096534/v1
-const PUBLIC_DATA_BASE_URL = 'https://api.odcloud.kr/api';
 
-// 환경변수에서 API 키를 가져오기
+// 프로덕션 환경에서는 PHP 프록시 사용, 개발 환경에서는 직접 API 호출
+const IS_PRODUCTION = import.meta.env.PROD;
+const USE_PROXY = import.meta.env.VITE_USE_PROXY === 'true'; // 개발 환경에서 프록시 강제 사용
+
+// 서브디렉토리 배포를 고려한 API URL 설정
+const BASE_PATH = import.meta.env.BASE_URL || '/';
+const PROXY_API_URL = `${BASE_PATH}api/parking-data.php`.replace(/\/+/g, '/'); // 중복 슬래시 제거
+const DIRECT_API_URL = 'https://api.odcloud.kr/api';
+
+// 환경변수에서 API 키를 가져오기 (개발 환경용)
 const API_KEY = import.meta.env.VITE_PUBLIC_DATA_API_KEY;
 
 /**
@@ -16,12 +25,44 @@ const isValidApiKey = () => {
 };
 
 /**
- * 공공데이터 API 호출 기본 함수
- * @param {string} endpoint - API 엔드포인트 (예: '/15096534/v1/uddi:4b6e43bf-2bbc-4d7c-85b9-a18f0e8b72f7')
+ * 프로덕션 환경용 프록시 API 호출
  * @param {Object} params - 쿼리 파라미터
  * @returns {Promise} API 응답 데이터
  */
-const callPublicDataAPI = async (endpoint, params = {}) => {
+const callProxyAPI = async (params = {}) => {
+  try {
+    const queryParams = new URLSearchParams({
+      perPage: 10,
+      page: 1,
+      ...params
+    });
+
+    const response = await fetch(`${PROXY_API_URL}?${queryParams}`);
+    
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+
+    const data = await response.json();
+    
+    if (data.error) {
+      throw new Error(data.message || 'API 오류가 발생했습니다.');
+    }
+    
+    return data;
+  } catch (error) {
+    console.error('프록시 API 호출 오류:', error);
+    throw error;
+  }
+};
+
+/**
+ * 개발 환경용 직접 API 호출
+ * @param {string} endpoint - API 엔드포인트
+ * @param {Object} params - 쿼리 파라미터
+ * @returns {Promise} API 응답 데이터
+ */
+const callDirectAPI = async (endpoint, params = {}) => {
   if (!isValidApiKey()) {
     throw new Error('유효한 API 키가 설정되지 않았습니다. .env 파일에 VITE_PUBLIC_DATA_API_KEY를 설정해주세요.');
   }
@@ -35,7 +76,7 @@ const callPublicDataAPI = async (endpoint, params = {}) => {
       ...params
     });
 
-    const response = await fetch(`${PUBLIC_DATA_BASE_URL}${endpoint}?${queryParams}`);
+    const response = await fetch(`${DIRECT_API_URL}${endpoint}?${queryParams}`);
     
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
@@ -54,7 +95,7 @@ const callPublicDataAPI = async (endpoint, params = {}) => {
     
     return data;
   } catch (error) {
-    console.error('공공데이터 API 호출 오류:', error);
+    console.error('직접 API 호출 오류:', error);
     throw error;
   }
 };
@@ -76,7 +117,7 @@ const getMockPublicData = () => {
           {
             순번: 1,
             개방호수: 20,
-            주차장명: '대구북구청 공용주차장',
+            주차장명: '대구북구청 공용주차장(Demo)',
             지번주소: '대구광역시 북구 칠성동2가 302-155',
             면수: 50,
             개방시간: '09:00~18:00',
@@ -90,7 +131,7 @@ const getMockPublicData = () => {
           {
             순번: 2,
             개방호수: 15,
-            주차장명: '칠성시장 공영주차장',
+            주차장명: '칠성시장 공영주차장(Demo)',
             지번주소: '대구광역시 북구 칠성동2가 151-8',
             면수: 30,
             개방시간: '24시간',
@@ -104,7 +145,7 @@ const getMockPublicData = () => {
           {
             순번: 3,
             개방호수: 10,
-            주차장명: '북구문화회관 주차장',
+            주차장명: '북구문화회관 주차장(Demo)',
             지번주소: '대구광역시 북구 산격동 1295',
             면수: 40,
             개방시간: '09:00~22:00',
@@ -118,7 +159,7 @@ const getMockPublicData = () => {
           {
             순번: 4,
             개방호수: 25,
-            주차장명: '대구교육대학교 개방주차장',
+            주차장명: '대구교육대학교 개방주차장(Demo)',
             지번주소: '대구광역시 북구 태전동 219',
             면수: 100,
             개방시간: '18:00~08:00',
@@ -132,7 +173,7 @@ const getMockPublicData = () => {
           {
             순번: 5,
             개방호수: 12,
-            주차장명: '침산공원 주차장',
+            주차장명: '침산공원 주차장(Demo)',
             지번주소: '대구광역시 북구 침산동 산 180-1',
             면수: 35,
             개방시간: '06:00~22:00',
@@ -156,20 +197,32 @@ const getMockPublicData = () => {
  */
 export const getPublicFacilities = async (options = {}) => {
   try {
-    // 실제 API 키가 유효한 경우 실제 API 호출
-    if (isValidApiKey()) {
-      console.log('실제 공공데이터 API 호출 중...');
-      // 대구광역시 북구 공유개방 주차장 현황 API 엔드포인트
-      return await callPublicDataAPI('/15096534/v1/uddi:d91498fc-5229-4d2d-8e72-df412085242f', options);
+    // USE_PROXY가 true로 설정되었거나 프로덕션 환경에서 프록시 사용
+    if (USE_PROXY || IS_PRODUCTION) {
+      console.log('🔄 프록시 서버를 통한 공공데이터 API 호출 중...');
+      return await callProxyAPI(options);
     } else {
-      // API 키가 없거나 유효하지 않은 경우 모의 데이터 사용
-      console.log('API 키가 설정되지 않아 모의 데이터를 사용합니다.');
-      console.log('실제 데이터를 사용하려면 .env 파일에 VITE_PUBLIC_DATA_API_KEY를 설정해주세요.');
-      return await getMockPublicData();
+      // 개발 환경에서 실제 API 키가 유효한 경우 직접 API 호출
+      if (isValidApiKey()) {
+        console.log('🔗 실제 공공데이터 API 호출 중...');
+        return await callDirectAPI('/15096534/v1/uddi:d91498fc-5229-4d2d-8e72-df412085242f', options);
+      } else {
+        // API 키가 없거나 유효하지 않은 경우 모의 데이터 사용
+        console.log('⚠️ API 키가 설정되지 않아 모의 데이터를 사용합니다.');
+        console.log('💡 실제 데이터를 사용하려면 .env 파일에 VITE_PUBLIC_DATA_API_KEY를 설정해주세요.');
+        console.log('🏠 개발 환경에서는 직접 API 호출 또는 모의 데이터를 사용합니다.');
+        return await getMockPublicData();
+      }
     }
   } catch (error) {
-    console.error('주차장 데이터 가져오기 실패:', error);
-    console.log('오류로 인해 모의 데이터를 사용합니다.');
+    console.error('❌ 주차장 데이터 가져오기 실패:', error);
+    if (USE_PROXY || IS_PRODUCTION) {
+      console.log('🔄 프록시 서버 오류로 인해 모의 데이터를 사용합니다.');
+      console.log('💻 서버에 parking-data.php 파일이 있는지 확인해주세요.');
+      console.log('🔧 VITE_USE_PROXY=false로 설정하면 직접 API 호출을 시도합니다.');
+    } else {
+      console.log('🏠 개발 환경 오류로 인해 모의 데이터를 사용합니다.');
+    }
     // 에러 발생 시 모의 데이터 반환
     return await getMockPublicData();
   }

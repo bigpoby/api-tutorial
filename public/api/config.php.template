@@ -1,0 +1,29 @@
+<?php
+/**
+ * API 설정 파일 템플릿
+ * 
+ * 사용 방법:
+ * 1. 이 파일을 config.php로 복사
+ * 2. YOUR_ACTUAL_API_KEY_HERE를 실제 API 키로 교체
+ * 3. 필요에 따라 기타 설정 값들을 수정
+ */
+
+// 실제 API 키 설정 (공공데이터포털에서 발급받은 키)
+define('API_KEY', 'YOUR_ACTUAL_API_KEY_HERE');
+
+// API 기본 URL
+define('API_BASE_URL', 'https://api.odcloud.kr/api');
+
+// 기타 설정
+define('DEBUG_MODE', false);
+define('CACHE_ENABLED', true);
+define('CACHE_DURATION', 300); // 5분
+
+/**
+ * 배포 시 주의사항:
+ * 1. 이 파일을 웹 루트 밖에 위치시키면 더 안전합니다
+ * 2. 파일 권한을 600으로 설정하여 소유자만 읽을 수 있도록 합니다
+ * 3. 닷홈 호스팅에서는 public_html 폴더 밖에 두는 것이 좋습니다
+ */
+
+?>

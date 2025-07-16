@@ -10,10 +10,12 @@ const usePublicDataStore = create((set, get) => ({
   loading: false,
   error: null,
   
-  // API 키 상태
-  hasApiKey: import.meta.env.VITE_PUBLIC_DATA_API_KEY &&
+  // API 키 상태 (프로덕션에서는 프록시 사용)
+  hasApiKey: import.meta.env.PROD || (
+    import.meta.env.VITE_PUBLIC_DATA_API_KEY &&
     import.meta.env.VITE_PUBLIC_DATA_API_KEY.trim() !== '' &&
-    import.meta.env.VITE_PUBLIC_DATA_API_KEY !== 'YOUR_API_KEY_HERE',
+    import.meta.env.VITE_PUBLIC_DATA_API_KEY !== 'YOUR_API_KEY_HERE'
+  ),
 
   // 액션
   /**

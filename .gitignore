@@ -12,6 +12,10 @@ dist
 dist-ssr
 *.local
 
+# 배포용 PHP 파일은 Git에 포함
+!dist/api/
+!dist/.htaccess
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
@@ -24,3 +28,8 @@ dist-ssr
 *.sw?
 
 .env
+*.zip
+
+# API 설정 파일 (보안상 제외)
+public/api/config.php
+dist/api/config.php
