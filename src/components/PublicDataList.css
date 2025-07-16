@@ -1,0 +1,275 @@
+/* 공공데이터 목록 스타일 */
+.public-data-list {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.list-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+  padding-bottom: 15px;
+  border-bottom: 2px solid #e0e0e0;
+}
+
+.list-header h2 {
+  color: #333;
+  font-size: 28px;
+  font-weight: bold;
+  margin: 0;
+}
+
+.result-count {
+  color: #666;
+  font-size: 16px;
+}
+
+.result-count strong {
+  color: #007bff;
+  font-weight: bold;
+}
+
+/* 시설 그리드 */
+.facility-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+  gap: 20px;
+}
+
+/* 시설 아이템 */
+.facility-item {
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.facility-item:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+}
+
+.facility-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 15px;
+}
+
+.facility-name {
+  color: #333;
+  font-size: 18px;
+  font-weight: bold;
+  margin: 0;
+  flex: 1;
+  margin-right: 10px;
+}
+
+.facility-capacity {
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: bold;
+  white-space: nowrap;
+  background-color: #e3f2fd;
+  color: #1565c0;
+}
+
+.facility-hours {
+  color: #2e7d32;
+  font-weight: 500;
+}
+
+.facility-period {
+  color: #666;
+  font-size: 13px;
+}
+
+.facility-height {
+  color: #e65100;
+  font-weight: 500;
+}
+
+.facility-note {
+  color: #5d4037;
+  font-style: italic;
+  background-color: #fff3e0;
+  padding: 6px 10px;
+  border-radius: 4px;
+  margin-top: 8px;
+}
+
+.facility-location {
+  margin-top: 10px;
+}
+
+.location-button {
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  padding: 4px 12px;
+  border-radius: 4px;
+  font-size: 12px;
+  cursor: pointer;
+  margin-left: 8px;
+  transition: background-color 0.2s ease;
+}
+
+.location-button:hover {
+  background-color: #45a049;
+}
+
+.facility-details p {
+  margin: 8px 0;
+  color: #555;
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+.facility-details .label {
+  font-weight: bold;
+  color: #333;
+  margin-right: 8px;
+}
+
+.facility-date {
+  color: #666;
+  font-size: 13px;
+}
+
+.category-tag {
+  background-color: #f0f8ff;
+  color: #007bff;
+  padding: 2px 8px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: bold;
+  margin-left: 8px;
+}
+
+/* 로딩 스피너 */
+.loading-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 20px;
+  text-align: center;
+}
+
+.loading-spinner {
+  width: 40px;
+  height: 40px;
+  border: 4px solid #f3f3f3;
+  border-top: 4px solid #007bff;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-bottom: 20px;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.loading-container p {
+  color: #666;
+  font-size: 16px;
+  margin: 0;
+}
+
+/* 에러 메시지 */
+.error-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 20px;
+  text-align: center;
+}
+
+.error-icon {
+  font-size: 48px;
+  margin-bottom: 20px;
+}
+
+.error-container h3 {
+  color: #dc3545;
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.error-container p {
+  color: #666;
+  font-size: 16px;
+  margin-bottom: 20px;
+}
+
+.retry-button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 6px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.retry-button:hover {
+  background-color: #0056b3;
+}
+
+/* 빈 결과 */
+.empty-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 20px;
+  text-align: center;
+}
+
+.empty-icon {
+  font-size: 48px;
+  margin-bottom: 20px;
+}
+
+.empty-container h3 {
+  color: #666;
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.empty-container p {
+  color: #999;
+  font-size: 16px;
+  margin: 0;
+}
+
+/* 반응형 디자인 */
+@media (max-width: 768px) {
+  .facility-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .list-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+  
+  .facility-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+  
+  .facility-name {
+    margin-right: 0;
+  }
+}

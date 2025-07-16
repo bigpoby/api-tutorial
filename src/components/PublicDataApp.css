@@ -1,0 +1,165 @@
+/* 공공데이터 앱 메인 스타일 */
+.public-data-app {
+  min-height: 100vh;
+  background-color: #f8f9fa;
+  display: flex;
+  flex-direction: column;
+}
+
+/* 헤더 스타일 */
+.app-header {
+  background: linear-gradient(135deg, #007bff, #0056b3);
+  color: white;
+  padding: 40px 20px;
+  text-align: center;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.app-header h1 {
+  font-size: 36px;
+  font-weight: bold;
+  margin: 0 0 10px 0;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.app-header p {
+  font-size: 18px;
+  margin: 0;
+  opacity: 0.9;
+}
+
+/* 메인 컨텐츠 */
+.app-main {
+  flex: 1;
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* 푸터 스타일 */
+.app-footer {
+  background-color: #343a40;
+  color: white;
+  padding: 30px 20px;
+  margin-top: 40px;
+}
+
+.footer-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.footer-content p {
+  margin: 15px 0;
+  line-height: 1.6;
+}
+
+.footer-content code {
+  background-color: #495057;
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-family: 'Courier New', monospace;
+  font-size: 14px;
+}
+
+.footer-content strong {
+  color: #ffc107;
+}
+
+.footer-content a {
+  color: #17a2b8;
+  text-decoration: none;
+}
+
+.footer-content a:hover {
+  text-decoration: underline;
+}
+
+/* API 상태 스타일 */
+.api-status {
+  margin-bottom: 20px;
+  padding: 15px;
+  border-radius: 8px;
+  font-size: 16px;
+}
+
+.api-status-success {
+  background-color: #d4edda;
+  color: #155724;
+  border: 1px solid #c3e6cb;
+  margin: 0;
+}
+
+.api-status-demo {
+  background-color: #fff3cd;
+  color: #856404;
+  border: 1px solid #ffeaa7;
+  margin: 0;
+}
+
+/* 설정 단계 스타일 */
+.setup-steps {
+  text-align: left;
+  max-width: 600px;
+  margin: 20px auto;
+  background-color: #495057;
+  padding: 20px;
+  border-radius: 8px;
+}
+
+.setup-steps ol {
+  margin: 0;
+  padding-left: 20px;
+}
+
+.setup-steps li {
+  margin: 8px 0;
+  line-height: 1.5;
+}
+
+.demo-notice {
+  background-color: #d1ecf1;
+  color: #0c5460;
+  padding: 15px;
+  border-radius: 8px;
+  border-left: 4px solid #bee5eb;
+  margin: 20px 0 0 0;
+}
+
+/* 반응형 디자인 */
+@media (max-width: 768px) {
+  .app-header {
+    padding: 20px;
+  }
+  
+  .app-header h1 {
+    font-size: 28px;
+  }
+  
+  .app-header p {
+    font-size: 16px;
+  }
+  
+  .app-main {
+    padding: 0 10px;
+  }
+  
+  .footer-content {
+    text-align: left;
+  }
+}
+
+@media (max-width: 480px) {
+  .app-header h1 {
+    font-size: 24px;
+  }
+  
+  .app-header p {
+    font-size: 14px;
+  }
+  
+  .app-main {
+    padding: 0 10px;
+  }
+}
