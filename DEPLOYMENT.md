@@ -65,7 +65,7 @@ npm run build
 #### .env 파일 설정
 ```bash
 # 공공데이터포털 API 키 설정
-VITE_PUBLIC_DATA_API_KEY=IfrYxxiZqH2B8Fc5Vw/3HYY27uwsWkHbWmUmBwn41iGtTfWb5W3Z91OzyetgljCQ65x7eYX4ji6Db5qF6K3EQA==
+VITE_PUBLIC_DATA_API_KEY=인증키는_여기에
 
 # 프록시 사용여부 - 배포시 반드시 true
 VITE_USE_PROXY=true
@@ -75,7 +75,7 @@ VITE_USE_PROXY=true
 ```php
 <?php
 // 실제 API 키 설정 (보안상 중요!)
-define('API_KEY', 'IfrYxxiZqH2B8Fc5Vw/3HYY27uwsWkHbWmUmBwn41iGtTfWb5W3Z91OzyetgljCQ65x7eYX4ji6Db5qF6K3EQA==');
+define('API_KEY', '인증키는_여기에');
 define('API_BASE_URL', 'https://api.odcloud.kr/api');
 ?>
 ```

@@ -1,0 +1,402 @@
+/* 다중 API 관리 컴포넌트 스타일 */
+.multi-api-app {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.multi-api-app h1 {
+  text-align: center;
+  color: #2c3e50;
+  margin-bottom: 30px;
+  font-size: 2.5rem;
+}
+
+/* API 키 상태 */
+.api-key-status {
+  padding: 10px 20px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  text-align: center;
+  font-weight: bold;
+}
+
+.api-key-status.valid {
+  background-color: #d4edda;
+  color: #155724;
+  border: 1px solid #c3e6cb;
+}
+
+.api-key-status.invalid {
+  background-color: #f8d7da;
+  color: #721c24;
+  border: 1px solid #f5c6cb;
+}
+
+/* 제어 패널 */
+.control-panel {
+  background: #f8f9fa;
+  padding: 20px;
+  border-radius: 12px;
+  margin-bottom: 30px;
+  border: 1px solid #dee2e6;
+}
+
+.control-panel h3 {
+  margin-top: 0;
+  margin-bottom: 15px;
+  color: #495057;
+}
+
+/* API 선택 */
+.api-selection {
+  margin-bottom: 20px;
+}
+
+.api-checkboxes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  margin-bottom: 15px;
+}
+
+.api-checkbox {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  padding: 8px 12px;
+  background: white;
+  border: 1px solid #dee2e6;
+  border-radius: 6px;
+  transition: all 0.2s;
+}
+
+.api-checkbox:hover {
+  background: #e9ecef;
+}
+
+.api-checkbox input[type="checkbox"] {
+  margin: 0;
+}
+
+.toggle-all-btn {
+  background: #007bff;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.toggle-all-btn:hover {
+  background: #0056b3;
+}
+
+/* 로딩 모드 */
+.loading-mode {
+  margin-bottom: 20px;
+}
+
+.mode-options {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.mode-options label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  padding: 8px;
+  background: white;
+  border: 1px solid #dee2e6;
+  border-radius: 6px;
+  transition: all 0.2s;
+}
+
+.mode-options label:hover {
+  background: #e9ecef;
+}
+
+/* 액션 버튼 */
+.action-buttons {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.action-buttons button {
+  padding: 12px 24px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.2s;
+}
+
+.load-btn {
+  background: #28a745;
+  color: white;
+}
+
+.load-btn:hover:not(:disabled) {
+  background: #218838;
+}
+
+.retry-btn {
+  background: #ffc107;
+  color: #212529;
+}
+
+.retry-btn:hover:not(:disabled) {
+  background: #e0a800;
+}
+
+.clear-btn {
+  background: #dc3545;
+  color: white;
+}
+
+.clear-btn:hover:not(:disabled) {
+  background: #c82333;
+}
+
+.action-buttons button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* 전체 에러 */
+.global-error {
+  background: #f8d7da;
+  color: #721c24;
+  padding: 15px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  border: 1px solid #f5c6cb;
+}
+
+.global-error button {
+  background: #dc3545;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+/* API 결과 */
+.api-results {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.api-section {
+  background: white;
+  border: 1px solid #dee2e6;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.api-section h2 {
+  margin-top: 0;
+  margin-bottom: 20px;
+  color: #495057;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.loading-indicator {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.error-indicator {
+  color: #dc3545;
+}
+
+/* API 데이터 */
+.api-data {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.data-summary {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  padding: 10px 15px;
+  background: #e9ecef;
+  border-radius: 6px;
+  font-size: 0.9rem;
+}
+
+.data-summary span {
+  background: #495057;
+  color: white;
+  padding: 4px 8px;
+  border-radius: 4px;
+}
+
+.notice {
+  background: #fff3cd;
+  color: #856404;
+  padding: 8px 12px;
+  border-radius: 4px;
+  border: 1px solid #ffeaa7;
+  margin-left: auto;
+}
+
+.data-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+.data-item {
+  background: #f8f9fa;
+  padding: 15px;
+  border-radius: 8px;
+  border: 1px solid #dee2e6;
+}
+
+.data-field {
+  display: flex;
+  margin-bottom: 8px;
+  gap: 10px;
+}
+
+.field-label {
+  font-weight: 600;
+  color: #495057;
+  min-width: 80px;
+}
+
+.field-value {
+  color: #212529;
+  word-break: break-word;
+}
+
+/* 로딩 상태 */
+.loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px;
+  font-size: 1.1rem;
+  color: #6c757d;
+}
+
+.loading::after {
+  content: '';
+  width: 20px;
+  height: 20px;
+  border: 2px solid #dee2e6;
+  border-top: 2px solid #007bff;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-left: 10px;
+}
+
+/* 에러 상태 */
+.error {
+  background: #f8d7da;
+  color: #721c24;
+  padding: 20px;
+  border-radius: 8px;
+  text-align: center;
+  border: 1px solid #f5c6cb;
+}
+
+.error button {
+  background: #dc3545;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.error button:hover {
+  background: #c82333;
+}
+
+/* 데이터 없음 */
+.no-data {
+  text-align: center;
+  padding: 40px;
+  color: #6c757d;
+  font-style: italic;
+}
+
+/* 디버그 정보 */
+.debug-info {
+  margin-top: 30px;
+  border: 1px solid #dee2e6;
+  border-radius: 8px;
+  background: #f8f9fa;
+}
+
+.debug-info summary {
+  padding: 15px;
+  cursor: pointer;
+  background: #e9ecef;
+  border-radius: 8px 8px 0 0;
+  font-weight: 500;
+}
+
+.debug-info summary:hover {
+  background: #dee2e6;
+}
+
+.debug-info pre {
+  margin: 0;
+  padding: 15px;
+  background: #f8f9fa;
+  border-radius: 0 0 8px 8px;
+  overflow-x: auto;
+  font-size: 0.85rem;
+  line-height: 1.4;
+}
+
+/* 반응형 디자인 */
+@media (max-width: 768px) {
+  .multi-api-app {
+    padding: 15px;
+  }
+  
+  .multi-api-app h1 {
+    font-size: 2rem;
+  }
+  
+  .api-checkboxes {
+    flex-direction: column;
+  }
+  
+  .data-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .data-summary {
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .action-buttons {
+    flex-direction: column;
+  }
+}

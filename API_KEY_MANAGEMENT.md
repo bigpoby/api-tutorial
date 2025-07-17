@@ -6,12 +6,12 @@
 ```bash
 # .env 파일
 VITE_USE_PROXY=true
-VITE_PUBLIC_DATA_API_KEY=IfrYxxiZqH2B8Fc5Vw/3HYY27uwsWkHbWmUmBwn41iGtTfWb5W3Z91OzyetgljCQ65x7eYX4ji6Db5qF6K3EQA==  # 있어도 무시됨
+VITE_PUBLIC_DATA_API_KEY=인증키는_여기에  # 있어도 무시됨
 ```
 
 ```php
 // config.php 파일
-define('API_KEY', 'IfrYxxiZqH2B8Fc5Vw/3HYY27uwsWkHbWmUmBwn41iGtTfWb5W3Z91OzyetgljCQ65x7eYX4ji6Db5qF6K3EQA=='); // 실제 API 키 설정
+define('API_KEY', '인증키는_여기에'); // 실제 API 키 설정
 ```
 
 **장점**: 
@@ -23,7 +23,7 @@ define('API_KEY', 'IfrYxxiZqH2B8Fc5Vw/3HYY27uwsWkHbWmUmBwn41iGtTfWb5W3Z91Ozyetgl
 ```bash
 # .env 파일
 VITE_USE_PROXY=false
-VITE_PUBLIC_DATA_API_KEY=IfrYxxiZqH2B8Fc5Vw/3HYY27uwsWkHbWmUmBwn41iGtTfWb5W3Z91OzyetgljCQ65x7eYX4ji6Db5qF6K3EQA==  # 실제 키 필요
+VITE_PUBLIC_DATA_API_KEY=인증키는_여기에  # 실제 키 필요
 ```
 
 ```php
@@ -43,12 +43,12 @@ define('API_KEY', 'ANY_VALUE'); // 사용 안됨
 ```bash
 # .env 파일
 VITE_USE_PROXY=true
-VITE_PUBLIC_DATA_API_KEY=IfrYxxiZqH2B8Fc5Vw/3HYY27uwsWkHbWmUmBwn41iGtTfWb5W3Z91OzyetgljCQ65x7eYX4ji6Db5qF6K3EQA==  # 있어도 무시됨
+VITE_PUBLIC_DATA_API_KEY=인증키는_여기에  # 있어도 무시됨
 ```
 
 ```php
 // config.php 파일
-define('API_KEY', 'IfrYxxiZqH2B8Fc5Vw/3HYY27uwsWkHbWmUmBwn41iGtTfWb5W3Z91OzyetgljCQ65x7eYX4ji6Db5qF6K3EQA=='); // 실제 키 설정
+define('API_KEY', '인증키는_여기에'); // 실제 키 설정
 ```
 
 **장점**: 
@@ -61,12 +61,12 @@ define('API_KEY', 'IfrYxxiZqH2B8Fc5Vw/3HYY27uwsWkHbWmUmBwn41iGtTfWb5W3Z91Ozyetgl
 ### .env 파일 (현재)
 ```bash
 VITE_USE_PROXY=true
-VITE_PUBLIC_DATA_API_KEY=IfrYxxiZqH2B8Fc5Vw/3HYY27uwsWkHbWmUmBwn41iGtTfWb5W3Z91OzyetgljCQ65x7eYX4ji6Db5qF6K3EQA==  # 키 설정됨 (프록시 사용으로 무시)
+VITE_PUBLIC_DATA_API_KEY=인증키는_여기에  # 키 설정됨 (프록시 사용으로 무시)
 ```
 
 ### config.php 파일 (현재)
 ```php
-define('API_KEY', 'IfrYxxiZqH2B8Fc5Vw/3HYY27uwsWkHbWmUmBwn41iGtTfWb5W3Z91OzyetgljCQ65x7eYX4ji6Db5qF6K3EQA==');
+define('API_KEY', '인증키는_여기에');
 ```
 
 ## 🔄 개발 중 환경 전환 방법
